@@ -22,7 +22,7 @@ This project is a comprehensive system monitoring application built using Larave
 ## Installation
 
 1. **Clone the Repository**:
-   ``git clone https://github.com/yourusername/laravel-system-monitoring.git``
+   ``git clone https://github.com/TharinduWijyarathna/Handler.git``
    ``cd laravel-system-monitoring``
 
 2. **Install Dependencies**:
@@ -67,6 +67,7 @@ This project is licensed under the MIT License.
 - Laravel
 - Inertia.js
 - React.js
+- Spartie
 - AWS S3 / Google Cloud Storage / Azure Blob Storage
 
 ## Contact
