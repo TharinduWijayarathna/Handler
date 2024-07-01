@@ -127,9 +127,9 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 </div>
                 <div className="hidden bg-muted lg:block">
                     <img
-                        src="/placeholder.svg"
+                        src="/assets/images/trends.svg"
                         alt="Image"
-                        className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+                        className="dark:brightness-[1] w-full h-full px-20 py-20"
                     />
                 </div>
             </div>
