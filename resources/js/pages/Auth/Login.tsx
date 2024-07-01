@@ -34,7 +34,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 <title>Log in</title>
             </Head>
 
-            <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]" style={{ height: '100vh' }}>
+            <div className="w-full lg:grid lg:min-h-[600px] xl:min-h-[800px]" style={{ height: '100vh' }}>
                 <div className="flex items-center justify-center py-12">
                     <div className="mx-auto grid w-[350px] gap-6">
                         <div className="grid gap-2 text-center">
@@ -92,7 +92,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                                 <div className="block mt-4">
                                     <div className="flex justify-between items-center">
                                         <label className="flex items-center">
-                                            <Checkbox type='checkbox' style={{ backgroundColor: '#0c0a09', borderColor: '#292524' }}
+                                            <Checkbox type='checkbox' style={{ backgroundColor: '#292524', borderColor: '#292524'}}
                                                 name="remember"
                                                 checked={data.remember}
                                                 onChange={(e) => setData('remember', e.target.checked)}
@@ -124,13 +124,6 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                             </Link>
                         </div>
                     </div>
-                </div>
-                <div className="hidden bg-muted lg:block">
-                    <img
-                        src="/assets/images/trends.svg"
-                        alt="Image"
-                        className="dark:brightness-[1] w-full h-full px-20 py-20"
-                    />
                 </div>
             </div>
         </ThemeProvider>
