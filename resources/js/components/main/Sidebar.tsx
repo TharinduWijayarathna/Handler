@@ -34,8 +34,8 @@ export default function Sidebar() {
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <Link
-                                    href="#"
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                                    href={route('home')}
+                                    className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${window.location.pathname === '/' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
                                 >
                                     <Home className="h-5 w-5" />
                                     <span className="sr-only">Dashboard</span>
@@ -46,51 +46,17 @@ export default function Sidebar() {
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <Link
-                                    href="#"
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                                >
-                                    <ShoppingCart className="h-5 w-5" />
-                                    <span className="sr-only">Orders</span>
-                                </Link>
-                            </TooltipTrigger>
-                            <TooltipContent side="right">Orders</TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Link
-                                    href="#"
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                                >
-                                    <Package className="h-5 w-5" />
-                                    <span className="sr-only">Products</span>
-                                </Link>
-                            </TooltipTrigger>
-                            <TooltipContent side="right">Products</TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Link
-                                    href="#"
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                                >
-                                    <Users2 className="h-5 w-5" />
-                                    <span className="sr-only">Customers</span>
-                                </Link>
-                            </TooltipTrigger>
-                            <TooltipContent side="right">Customers</TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Link
-                                    href="#"
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                                    href={route('usage.index')}
+                                    className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${window.location.pathname === '/usage' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
                                 >
                                     <LineChart className="h-5 w-5" />
-                                    <span className="sr-only">Analytics</span>
+                                    <span className="sr-only">Usage</span>
                                 </Link>
                             </TooltipTrigger>
-                            <TooltipContent side="right">Analytics</TooltipContent>
+                            <TooltipContent side="right">Usage</TooltipContent>
                         </Tooltip>
+
+
                     </TooltipProvider>
                 </nav>
                 <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -99,7 +65,7 @@ export default function Sidebar() {
                             <TooltipTrigger asChild>
                                 <Link
                                     href="#"
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                                    className={`flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8` + (window.location.pathname === '/settings' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground')}
                                 >
                                     <Settings className="h-5 w-5" />
                                     <span className="sr-only">Settings</span>
