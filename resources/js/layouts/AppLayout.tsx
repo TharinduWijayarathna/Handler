@@ -2,6 +2,7 @@ import Header from '@/components/main/Header';
 import Footer from '@/components/main/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import React, { ReactNode, useState } from 'react';
+import { Head } from '@inertiajs/react';
 
 const AppLayout: React.FC<{ children: ReactNode; title?: string }> = ({ children, title }) => {
     // const { url } = usePage();
@@ -26,6 +27,11 @@ const AppLayout: React.FC<{ children: ReactNode; title?: string }> = ({ children
 
     return (
         <>
+            <Head>
+                <title>{title ? title : 'Vite React Tailwind'}</title>
+                <meta name="description" content="Vite React Tailwind" />
+            </Head>
+
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                 <div className="flex min-h-screen w-full flex-col">
 
