@@ -1,11 +1,13 @@
 import { useEffect, FormEventHandler } from 'react';
 import Checkbox from '@/components/Checkbox';
-import GuestLayout from '@/layouts/GuestLayout';
-import InputError from '@/components/InputError';
-import InputLabel from '@/components/InputLabel';
-import PrimaryButton from '@/components/PrimaryButton';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 import TextInput from '@/components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { AlertCircle, Check } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,71 +29,111 @@ export default function Login({ status, canResetPassword }: { status?: string, c
     };
 
     return (
-        <GuestLayout>
-            <Head title="Log in" />
+        <ThemeProvider>
+            <Head>
+                <title>Log in</title>
+            </Head>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]" style={{ height: '100vh' }}>
+                <div className="flex items-center justify-center py-12">
+                    <div className="mx-auto grid w-[350px] gap-6">
+                        <div className="grid gap-2 text-center">
+                            <h1 className="text-3xl font-bold">Login</h1>
+                            <p className="text-balance text-muted-foreground">
+                                Enter your email below to login to your account
+                            </p>
+                        </div>
+                        <div className="grid gap-4">
+                            <form onSubmit={submit} className="grid gap-4">
+                                <div className="grid gap-2">
+                                    <Label htmlFor="email" />
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        value={data.email}
+                                        placeholder="m@example.com"
+                                        className="mt-1 block w-full"
+                                        autoComplete="username"
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        required
+                                    />
+                                    {errors.email && (
+                                        <Alert variant="destructive">
+                                            <AlertCircle className="h-4 w-4" />
+                                            <AlertDescription>
+                                                {errors.email}
+                                            </AlertDescription>
+                                        </Alert>
+                                    )}
+                                </div>
+                                <div className="grid gap-2">
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                                    <Input
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        value={data.password}
+                                        className="mt-1 block w-full"
+                                        autoComplete="current-password"
+                                        onChange={(e) => setData('password', e.target.value)}
+                                        required
+                                    />
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
+                                    {errors.password && (
+                                        <Alert variant="destructive">
+                                            <AlertCircle className="h-4 w-4" />
+                                            <AlertDescription>
+                                                {errors.password}
+                                            </AlertDescription>
+                                        </Alert>
+                                    )}
+                                </div>
+                                <div className="block mt-4">
+                                    <div className="flex justify-between items-center">
+                                        <label className="flex items-center">
+                                            <Checkbox type='checkbox' style={{ backgroundColor: '#0c0a09', borderColor: '#292524' }}
+                                                name="remember"
+                                                checked={data.remember}
+                                                onChange={(e) => setData('remember', e.target.checked)}
+                                            />
+                                            <span className="ms-2 text-sm text-gray-600">Remember me</span>
+                                        </label>
+
+                                        {canResetPassword && (
+                                            <Link
+                                                href={route('password.request')}
+                                                className="inline-block text-sm underline"
+                                            >
+                                                Forgot your password?
+                                            </Link>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <Button className="w-full" disabled={processing}>
+                                    Log in
+                                </Button>
+                            </form>
+
+                        </div>
+                        <div className="mt-4 text-center text-sm">
+                            Don&apos;t have an account?{" "}
+                            <Link href="#" className="underline">
+                                Sign up
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                <div className="hidden bg-muted lg:block">
+                    <img
+                        src="/placeholder.svg"
+                        alt="Image"
+                        className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
                 </div>
+            </div>
+        </ThemeProvider>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
     );
 }
