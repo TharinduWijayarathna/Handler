@@ -94,7 +94,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                                 <div className="block mt-4">
                                     <div className="flex justify-between items-center">
                                         <label className="flex items-center">
-                                            <Checkbox type='checkbox'
+                                            <Checkbox type='checkbox' style={{ backgroundColor: 'transparent', color: '#ea580c', borderColor: '#ea580c' }}
                                                 name="remember"
                                                 checked={data.remember}
                                                 onChange={(e) => setData('remember', e.target.checked)}
