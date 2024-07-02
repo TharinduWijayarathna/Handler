@@ -58,14 +58,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                                         onChange={(e) => setData('email', e.target.value)}
                                         required
                                     />
-                                    {errors.email && (
-                                        <Alert variant="destructive">
-                                            <AlertCircle className="h-4 w-4" />
-                                            <AlertDescription>
-                                                {errors.email}
-                                            </AlertDescription>
-                                        </Alert>
-                                    )}
+
                                 </div>
                                 <div className="grid gap-2">
 
@@ -80,6 +73,15 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                                         required
                                     />
 
+                                    {errors.email && (
+                                        <Alert variant="destructive">
+                                            <AlertCircle className="h-4 w-4" />
+                                            <AlertDescription>
+                                                {errors.email}
+                                            </AlertDescription>
+                                        </Alert>
+                                    )}
+
                                     {errors.password && (
                                         <Alert variant="destructive">
                                             <AlertCircle className="h-4 w-4" />
@@ -92,7 +94,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                                 <div className="block mt-4">
                                     <div className="flex justify-between items-center">
                                         <label className="flex items-center">
-                                            <Checkbox type='checkbox' style={{ backgroundColor: '#292524', borderColor: '#292524'}}
+                                            <Checkbox type='checkbox'
                                                 name="remember"
                                                 checked={data.remember}
                                                 onChange={(e) => setData('remember', e.target.checked)}
@@ -119,7 +121,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         </div>
                         <div className="mt-4 text-center text-sm">
                             Don&apos;t have an account?{" "}
-                            <Link href="#" className="underline">
+                            <Link href={route('register')} className="underline">
                                 Sign up
                             </Link>
                         </div>
